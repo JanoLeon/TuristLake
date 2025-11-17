@@ -1,20 +1,17 @@
 import flet as ft
 from core.i18n import t
 
+
 def _set_lang_and_reload(page: ft.Page, lang: str, sheet: ft.BottomSheet | None = None):
-    # Guardar idioma seleccionado
     page.client_storage.set("lang", lang)
 
-    # Cerrar la hoja si existe
     if sheet is not None:
         sheet.open = False
 
-    # 🔥 Forzar reconstrucción manual de la pantalla de inicio
-    from views.index_view import view_index  # import local para evitar ciclos
+    from views.index_view import view_index
     page.clean()
     view_index(page)
     page.update()
-
 
 
 def _build_lang_sheet(page: ft.Page) -> ft.BottomSheet:
@@ -62,32 +59,56 @@ def _build_lang_sheet(page: ft.Page) -> ft.BottomSheet:
     )
     return sheet
 
+
 def _close_sheet(page: ft.Page, sheet: ft.BottomSheet):
     sheet.open = False
     page.update()
 
+
 def build_appbar(page: ft.Page) -> ft.AppBar:
-    # ----- Colores según tema -----
+
+    # --- Colores según tema ---
     if page.theme_mode == ft.ThemeMode.DARK:
-        # Tema oscuro
         appbar_color = ft.Colors.INDIGO_900
         icon_color = ft.Colors.WHITE
         text_color = ft.Colors.WHITE
+        circle_color = ft.Colors.WHITE24
     else:
-        # Tema claro
         appbar_color = ft.Colors.INDIGO_900
-        icon_color = ft.Colors.GREY_300        # gris claro
-        text_color = ft.Colors.GREY_200        # gris MUY claro
-    # -------------------------------
+        icon_color = ft.Colors.GREY_300
+        text_color = ft.Colors.GREY_200
+        circle_color = ft.Colors.WHITE24
+    # ---------------------------
 
     def open_lang_dialog(e):
         bs = _build_lang_sheet(page)
         page.open(bs)
 
     return ft.AppBar(
-        title=ft.Text(
-            t(page, "app_title"),
-            color=text_color,
+        title=ft.Row(
+            spacing=8,
+            vertical_alignment=ft.CrossAxisAlignment.CENTER,
+            controls=[
+                ft.Container(
+                    width=44,
+                    height=44,
+                    border_radius=999,     # círculo detrás
+                    bgcolor=circle_color,  # semitransparente, se ve bien en ambos temas
+                    alignment=ft.alignment.center,
+                    padding=4,
+                    content=ft.Image(
+                        src="assets/logo.png",
+                        width=34,
+                        height=34,
+                        fit=ft.ImageFit.CONTAIN,
+                    ),
+                ),
+                ft.Text(
+                    t(page, "app_title"),
+                    color=text_color,
+                    weight=ft.FontWeight.W_600,
+                ),
+            ],
         ),
         center_title=False,
         bgcolor=appbar_color,
@@ -106,4 +127,3 @@ def build_appbar(page: ft.Page) -> ft.AppBar:
             )
         ],
     )
-

@@ -1,3 +1,4 @@
+import os
 import flet as ft
 from views.index_view import view_index
 from views.perfil_view import view_perfil
@@ -28,7 +29,7 @@ def route_resolver(page: ft.Page, route: str):
         view_mapa(page)
     elif route == "/sos":
         view_sos(page)
-    elif route == "/actividad":      # ← esta línea es la clave
+    elif route == "/actividad":
         view_actividad(page)
     elif route == "/ajustes":
         view_ajustes(page)
@@ -36,24 +37,24 @@ def route_resolver(page: ft.Page, route: str):
         view_index(page)
 
 
-
-
 def main(page: ft.Page):
+    # ---------- Icono de la ventana (solo Desktop Windows) ----------
+    base_dir = os.path.dirname(__file__)
+    icon_path = os.path.join(base_dir, "assets", "logo.ico")
+    page.window.icon = icon_path  # << aquí se cambia el icono
+    # ---------------------------------------------------------------
+
     # ---------- Configuración VENTANA TIPO CELULAR ----------
-    # Primero aseguramos que NO esté maximizada ni fullscreen
     page.window_maximized = False
     page.window_full_screen = False
     page.window_resizable = False
 
-    # Relación claramente vertical (más alto que ancho)
-    page.window_width = 380      # ancho tipo celular
-    page.window_height = 760     # alto mayor
+    page.window_width = 380
+    page.window_height = 760
 
-    # Opcional: límites mínimos para que no cambie
     page.window_min_width = 380
     page.window_min_height = 760
 
-    # Aplicar inmediatamente a la ventana
     page.update()
     # --------------------------------------------------------
 
@@ -80,8 +81,9 @@ def main(page: ft.Page):
     page.on_route_change = lambda e: route_resolver(page, e.route)
     route_resolver(page, page.route or "/")
 
-
 if __name__ == "__main__":
-    ft.app(target=main, view=ft.AppView.FLET_APP, assets_dir="assets")
-
-
+    ft.app(
+        target=main,
+        view=ft.AppView.FLET_APP,
+        assets_dir="assets",
+    )

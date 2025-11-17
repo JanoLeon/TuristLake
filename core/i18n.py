@@ -28,7 +28,11 @@ I18N = {
         "profile_desc": "Aquí irá la información del usuario.",
 
         # --- Mapa ---
-        "map_desc": "Contenido de la vista Mapa...",
+        "map_desc": "Mapa offline del Lago Llanquihue con zonas de señal. Puedes hacer zoom y desplazarte.",
+        "map_signal_legend": "Leyenda de señal",
+        "map_signal_good": "Buena señal",
+        "map_signal_medium": "Señal media",
+        "map_signal_poor": "Baja señal",
 
         # --- SOS ---
         "sos_desc": "Contenido de la vista SOS...",
@@ -91,7 +95,11 @@ I18N = {
         "profile_desc": "User info will go here.",
 
         # --- Map ---
-        "map_desc": "Map view content...",
+        "map_desc": "Offline map of Lake Llanquihue with signal coverage areas. You can zoom and pan.",
+        "map_signal_legend": "Signal legend",
+        "map_signal_good": "Good signal",
+        "map_signal_medium": "Medium signal",
+        "map_signal_poor": "Low signal",
 
         # --- SOS ---
         "sos_desc": "SOS view content...",
@@ -154,7 +162,11 @@ I18N = {
         "profile_desc": "此处显示用户信息。",
 
         # --- Map ---
-        "map_desc": "地图视图内容…",
+        "map_desc": "Llanquihue 湖离线地图及信号覆盖区域，可以缩放和拖动查看。",
+        "map_signal_legend": "信号图例",
+        "map_signal_good": "信号良好",
+        "map_signal_medium": "信号中等",
+        "map_signal_poor": "信号较弱",
 
         # --- SOS ---
         "sos_desc": "紧急求助视图内容…",
