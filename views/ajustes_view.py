@@ -15,12 +15,16 @@ def view_ajustes(page: ft.Page):
     def on_theme_change(e):
         value = e.control.value
         page.client_storage.set("theme", value)
+
         if value == "light":
             page.theme_mode = ft.ThemeMode.LIGHT
         elif value == "dark":
             page.theme_mode = ft.ThemeMode.DARK
         else:
             page.theme_mode = ft.ThemeMode.SYSTEM
+
+        # 🔥 volver a construir el navbar con el nuevo tema
+        page.appbar = build_appbar(page)
         page.update()
 
     def on_font_change(e):

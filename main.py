@@ -5,6 +5,8 @@ from views.mapa_view import view_mapa
 from views.sos_view import view_sos
 from views.actividades_view import view_actividad
 from views.ajustes_view import view_ajustes
+from views.perfil_cuenta_view import view_perfil_cuenta
+
 
 def apply_theme_from_storage(page: ft.Page):
     theme = page.client_storage.get("theme") or "system"
@@ -20,16 +22,20 @@ def route_resolver(page: ft.Page, route: str):
     page.clean()
     if route == "/perfil":
         view_perfil(page)
+    elif route == "/perfil_cuenta":
+        view_perfil_cuenta(page)
     elif route == "/mapa":
         view_mapa(page)
     elif route == "/sos":
         view_sos(page)
-    elif route == "/actividad":
+    elif route == "/actividad":      # ← esta línea es la clave
         view_actividad(page)
     elif route == "/ajustes":
         view_ajustes(page)
     else:
         view_index(page)
+
+
 
 
 def main(page: ft.Page):
@@ -76,4 +82,6 @@ def main(page: ft.Page):
 
 
 if __name__ == "__main__":
-    ft.app(target=main, view=ft.AppView.FLET_APP)
+    ft.app(target=main, view=ft.AppView.FLET_APP, assets_dir="assets")
+
+

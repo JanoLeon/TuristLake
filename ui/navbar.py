@@ -70,7 +70,7 @@ def build_appbar(page: ft.Page) -> ft.AppBar:
     # ----- Colores según tema -----
     if page.theme_mode == ft.ThemeMode.DARK:
         # Tema oscuro
-        appbar_color = ft.Colors.ON_SURFACE_VARIANT
+        appbar_color = ft.Colors.INDIGO_900
         icon_color = ft.Colors.WHITE
         text_color = ft.Colors.WHITE
     else:

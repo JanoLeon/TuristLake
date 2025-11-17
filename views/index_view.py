@@ -1,8 +1,8 @@
-# views/index_view.py
 import flet as ft
 from core.i18n import t
 from ui.navbar import build_appbar
 from core.ui_helpers import get_font_settings, text_body
+
 
 def _square_button(page: ft.Page, text: str, icon_name: str, on_click=None) -> ft.Container:
     font_scale, easy_read = get_font_settings(page)
@@ -29,6 +29,7 @@ def _square_button(page: ft.Page, text: str, icon_name: str, on_click=None) -> f
             spacing=8,
         ),
     )
+
 
 def view_index(page: ft.Page):
     page.appbar = build_appbar(page)
